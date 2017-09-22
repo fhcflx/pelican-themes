@@ -147,6 +147,9 @@
                         </li>
                     {% endfor %}
                 {% endif %}
+                {% for lang, url in extra_siteurls.items() %}
+                <li><a href="{{ url }}/">{{ lang }}</a></li>
+                {% endfor %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
             {% if 'tipue_search' in PLUGINS %}
