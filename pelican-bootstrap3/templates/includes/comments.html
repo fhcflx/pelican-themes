@@ -22,6 +22,22 @@
 
             var disqus_config = function () {
                 this.language = "{{ DEFAULT_LANG }}";
+
+                {% if article %}
+                    {% if not DISQUS_NO_ID %}
+                        this.page.identifier = '{{ article.date|strftime('%Y-%m-%d-') ~ article.slug }}';
+                    {% endif %}
+                    {% if SITEURL %}
+                        this.page.url = '{{ SITEURL }}/{{ article.url }}';
+                    {% endif %}
+                {% elif page %}
+                    {% if not DISQUS_NO_ID %}
+                        this.page.identifier = 'page-{{ page.slug }}';
+                    {% endif %}
+                    {% if SITEURL %}
+                        this.page.url = '{{ SITEURL }}/{{ page.url }}';
+                    {% endif %}
+                {% endif %}
             };
 
             /* * * DON'T EDIT BELOW THIS LINE * * */
